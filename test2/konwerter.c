@@ -2,53 +2,64 @@
 #include <malloc.h>
 #include <string.h>
 
-
+/*
+Przez stosowanie dziwnych znakow w programie nie da sie go skompilowac z flagami
+Lecz bez flag wyswietla sie tylko ostrzerzenie 'multi-character character constant'
+Program nie rozni sie dzialaniem miedzy kompilacja gcc a g++
+*/
 
 char Zamien( int KodZnaku, int *TabKodow, char *TabZnakow, int Rozmiar)
 {
-  int i;
+    int i;
 
-  for (i = 0;  i < Rozmiar; ++i) 
-    if (KodZnaku == TabKodow[i]) return TabZnakow[i];
+    for (i = 0;  i < Rozmiar; ++i)
+        if (KodZnaku == TabKodow[i]) return TabZnakow[i];
 
-  return KodZnaku;
+    return KodZnaku;
 }
 
 
 void KonwertujNapis( char *Napis, int *TabKodow, char *TabZnakow, int Rozmiar)
 {
-  unsigned int i;
- 
-  for (i = 0;  i < strlen(Napis); ++i)
-    Napis[i] = Zamien(Napis[i],TabKodow,TabZnakow,Rozmiar);
+    unsigned int i;
+
+    for (i = 0;  i < strlen(Napis); ++i)
+        Napis[i] = Zamien(Napis[i],TabKodow,TabZnakow,Rozmiar);
 }
 
 
 int main()
 {
-  int  IloscKodow = 10;
-  int  Rozmiar = IloscKodow * sizeof('¶');
+    int  IloscKodow = 10;
+    int  Rozmiar = IloscKodow * sizeof('Â¶');
 
-  int  *TabKodow = (int*)malloc(Rozmiar);
-  char *TabZnakow = (char*)malloc(IloscKodow*sizeof(char)); 
-  char *Napis = strdup("Cze¶æ ¦wiecie!!! ¯yczê mi³ego dnia.");
+    int  *TabKodow = (int*)malloc(Rozmiar);
+    char *TabZnakow = (char*)malloc(IloscKodow*sizeof(char));
+    char *Napis = strdup("CzeÂ¶Ã¦ Â¦wiecie!!! Â¯yczÃª miÂ³ego dnia.");
 
-  TabKodow[0] = 'æ';     TabZnakow[0] = 'c';
-  TabKodow[1] = 'ê';     TabZnakow[1] = 'e';
-  TabKodow[2] = '³';     TabZnakow[2] = 'l';
-  TabKodow[3] = '¶';     TabZnakow[3] = 's';
-  TabKodow[4] = '¦';     TabZnakow[4] = 'S';
-  TabKodow[5] = '¯';     TabZnakow[5] = 'Z';
-  TabKodow[6] = '¯';     TabZnakow[6] = 'Z';
-  TabKodow[7] = '¯';     TabZnakow[7] = 'Z';
-  TabKodow[8] = '¯';     TabZnakow[8] = 'Z';
-  TabKodow[9] = '¯';     TabZnakow[9] = 'Z';    
-  
-  printf("Napis Latin2:  \"%s\"\n",Napis);
+    /*
+      C jak i C++ nie posiadaja rozszerzonej tablicy ascii (jedynie do liczby 127)
+      Z tego powodu wyskakuje blad multi-character poniewaÅ¼ na przyklad znak 'Ã¦' posiada kod 230
+      co kompilator odbiera jako zmienna 2 bajtowa lecz zapis znaku w '' informuje ze to jest zmienna typu char
+      (czyli 1 bajtowa zamienna) wiec probujac wyswietlic ta liczbe pojawiaja sie jakies smieci
+    */
 
-  KonwertujNapis(Napis,TabKodow,TabZnakow,IloscKodow);
+    TabKodow[0] = 'Ã¦';     TabZnakow[0] = 'c';
+    TabKodow[1] = 'Ãª';     TabZnakow[1] = 'e';
+    TabKodow[2] = 'Â³';     TabZnakow[2] = 'l';
+    TabKodow[3] = 'Â¶';     TabZnakow[3] = 's';
+    TabKodow[4] = 'Â¦';     TabZnakow[4] = 'S';
+    TabKodow[5] = 'Â¯';     TabZnakow[5] = 'Z';
+    TabKodow[6] = 'Â¯';     TabZnakow[6] = 'Z';
+    TabKodow[7] = 'Â¯';     TabZnakow[7] = 'Z';
+    TabKodow[8] = 'Â¯';     TabZnakow[8] = 'Z';
+    TabKodow[9] = 'Â¯';     TabZnakow[9] = 'Z';
 
-  printf("Napis ASCII:   \"%s\"\n",Napis);
+    printf("Napis Latin2:  \"%s\"\n",Napis);
 
-  return 0;
+    KonwertujNapis(Napis,TabKodow,TabZnakow,IloscKodow);
+
+    printf("Napis ASCII:   \"%s\"\n",Napis);
+
+    return 0;
 }
