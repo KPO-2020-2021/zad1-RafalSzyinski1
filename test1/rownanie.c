@@ -1,4 +1,7 @@
 #include <stdio.h>
+//przy kompilacji gcc należy użyć flagi -lm aby podpiąć biblioteke matematyczną
+//(lecz przy kompilacji na windowsie z MinGW nie potrzebowałem tego)
+//Oraz przy kompilowaniu z pomocą g++ powinno się podpinać biblioteke <cmath>
 #include <math.h>
 
 
@@ -9,11 +12,13 @@ struct TrojmianKw {
 };
 
 
+//W c++ nie trzeba stosować struct przed wywołaniem struktury
 typedef struct TrojmianKw  TrojmianKw;
 
 
 
-int main() {
+int main() 
+{
   TrojmianKw   TKw;
   double       Delta, Delta_2;
   double       X1, X2;
