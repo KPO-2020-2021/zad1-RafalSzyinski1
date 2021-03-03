@@ -38,7 +38,7 @@ int main()
     char *Napis = strdup("Cze¶æ ¦wiecie!!! ¯yczê mi³ego dnia.");
 
     /*
-      C jak i C++ nie posiadaja rozszerzonej tablicy ascii (jedynie do liczby 127)
+      C jak i C++ zmienna char obsluguje liczby jedynie do wartosc 127
       Z tego powodu wyskakuje blad multi-character ponieważ na przyklad znak 'æ' posiada kod 230
       co kompilator odbiera jako zmienna 2 bajtowa lecz zapis znaku w '' informuje ze to jest zmienna typu char
       (czyli 1 bajtowa zamienna) wiec probujac wyswietlic ta liczbe pojawiaja sie jakies smieci
