@@ -6,7 +6,8 @@ using namespace std;
 
 
 
-struct TrojmianKw {
+struct TrojmianKw 
+{
   double  a;
   double  b;
   double  c;
@@ -19,17 +20,16 @@ void WprowadzWspTrojmianu( TrojmianKw *wTKw )
 {
   cout << "Podaj wspolczynnik a:\n";
   cin >> wTKw->a;
-  /*
-   * Tu uzupelnij
-   */
+  cout << "Podaj wspolczynnik b:\n";
+  cin >> wTKw->b;
+  cout << "Podaj wspolczynnik c:\n";
+  cin >> wTKw->c;
 }
 
 
 void WyswietlTrojmian( TrojmianKw TKw )
 {
-  /*
-   * Tu uzupelnij
-   */
+  cout << TKw.a << "x^2 + " << TKw.b << "x + " << TKw.c << endl; 
 }
 
 
@@ -55,9 +55,9 @@ int WyliczPierwiastki(TrojmianKw   TKw, double *wX1, double *wX2)
 
       Delta = sqrt( Delta_2 );
       *wX1 = (-TKw.b - Delta) / (2*TKw.a);
-      /*
-       * Tu uzupelnic
-       */
+      *wX2 = (-TKw.b + Delta) / (2*TKw.a);
+
+      return 2;
 
   } else if  (Delta_2 == 0) {
 
@@ -72,7 +72,8 @@ int WyliczPierwiastki(TrojmianKw   TKw, double *wX1, double *wX2)
 
 
 
-int main() {
+int main() 
+{
   TrojmianKw   TKw;
   double       X1, X2;
   
@@ -81,10 +82,9 @@ int main() {
 
   WprowadzWspTrojmianu(&TKw);
 
-  if (TKw.a == 0) {
-    /*
-     * Tu uzupelnic
-     */
+  if (TKw.a == 0) 
+  {
+    cerr << "Wprowadzone wsplczynniki a musi byc rozny od zera.\n";
     return 1;
   }
 
@@ -94,21 +94,15 @@ int main() {
     case 2:
       cout << "Istnieja dwa rozwiazania rzeczywiste:\n";
       cout << "  x1 = " << X1 << endl;
-      /*
-       * Tu uzupelnic
-       */
+      cout << "  x2 = " << X2 << endl;
       break;
 
     case 1:
-      /*
-       * Tu uzupelnic
-       */
+      cout << " x0 = " << X1 << endl;
       break;
 
     case 0:
-      /*
-       * Tu uzupelnic
-       */
+      cout << "Rownanie nie ma pierwiastkow" << endl;
       break;
   }
 
