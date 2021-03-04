@@ -6,6 +6,7 @@
 Przez stosowanie dziwnych znakow w programie nie da sie go skompilowac z flagami
 Lecz bez flag wyswietla sie tylko ostrzerzenie 'multi-character character constant'
 Program nie rozni sie dzialaniem miedzy kompilacja gcc a g++
+Za pomoca kompilatora MSVC program dziala zgodnie z zalozeniem
 */
 
 char Zamien( int KodZnaku, int *TabKodow, char *TabZnakow, int Rozmiar)
