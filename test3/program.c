@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+/* 
+    Kompiluje sie przy gcc
+    Przy g++ wywoluje blad: undefined reference to `E'
+*/
 
 extern const double PI;
 extern const double E;
