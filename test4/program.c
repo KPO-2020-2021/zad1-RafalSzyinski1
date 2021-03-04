@@ -1,6 +1,11 @@
 #include <stdio.h>
 
 
+/*
+  Przy kompilacji gcc program dziala poprawnie
+  Przy kompilacji g++ program nie widzi funkcji w innym pliku
+  przez co wywala blad 
+*/
 double Dodaj();
 
 
