@@ -3,6 +3,7 @@
 /* 
     Kompiluje sie przy gcc
     Przy g++ wywoluje blad: undefined reference to `E'
+	Po dopisaniu extern w module kompiluje normalnie
 */
 
 extern const double PI;
